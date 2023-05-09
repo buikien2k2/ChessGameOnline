@@ -30,10 +30,15 @@ class Dragger:
 
     def update_mouse(self, pos):# chen 1 tham so + vị trí trong ví  trí sẽ kèm tọa độ
         self.mouseX, self.mouseY = pos # (xcor, ycor)
+        # print(pos)
 
     def save_initial(self, pos):
         self.initial_row = pos[1] // SQSIZE
         self.initial_col = pos[0] // SQSIZE 
+
+    def save_initial2(self, pos):
+        self.initial_row = pos[1] 
+        self.initial_col = pos[0] 
 
     def drag_piece(self, piece):# save piece when piece move
         self.piece = piece
