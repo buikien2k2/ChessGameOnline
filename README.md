@@ -1,1 +1,2 @@
 # ChessGameOnline
+ChessGameOnline là một tựa game cờ vua được viết bằng python và sử dụng thư viện pygame để hiển thị đồ họa và thư viện socket để kết nối nhiều người chơi. ChessGameOline được phát triển trên hệ điều hành linux (Ubuntu). Trong Game người chơi sẽ di chuyển các quân cờ với các nước di chuyển phù hợp, người chơi có thể ăn quân cờ của đối phương và chiếu tướng quân vua cho đến khi quân vua không thể di chuyển để dành chiến thắng. ChessGameOnline được xây dựng để tìm hiểu về quy trình phát triển phần mềm mã nguồn mở.
