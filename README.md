@@ -15,7 +15,8 @@ ChessGameOnline là một tựa game cờ vua được viết bằng python và 
   - cd Downloads
   - tar -xzf ChessGameOnline-python.tar.gz
   ### 6. Khởi chạy 
-  
+  - cd ChessGameOnline-python
+  - python3 main_menu.py
 ## Cách chơi
 Khi đã xuất hiện giao diện menu của game, ta có thể chọn 2 chế dộ chơi:
 - Single: Người chơi sẽ chơi một mình để tìm hiểu quy luật các nước đi và cách chiến thắng
@@ -65,7 +66,8 @@ Open the terminal on Linux and type the following commands.
 - cd Downloads
 - tar -xzf ChessGameOnline-python.tar.gz
 ### 6. Run
-
+- cd ChessGameOnline-python
+- python3 main_menu.py
 ## How to play
 Once the game menu interface appears, you can choose between two playing modes:
 - Single: Players will play alone to learn the rules of movement and how to win.
