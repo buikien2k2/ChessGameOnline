@@ -1,5 +1,5 @@
 
-from color import Color
+from src.color import Color
 
 class Theme: #lớp chủ đề 
 

@@ -1,8 +1,8 @@
 import pygame
 import os
 
-from sound import Sound
-from theme import Theme
+from src.sound import Sound
+from src.theme import Theme
 
 class Config: # lớp cấu hình 
         

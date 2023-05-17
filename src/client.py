@@ -1,13 +1,13 @@
 import pygame
 import sys
 
-from const import *
-from game import Game
-from square import Square
-from move import Move
-from player import Player
+from src.const import *
+from src.game import Game
+from src.square import Square
+from src.move import Move
+from src.player import Player
 
-from network import Network
+from src.network import Network
 
 #FPS
 FPS = 60
@@ -20,7 +20,7 @@ def read_pos(str):
 def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1]) + "," + str(tup[2]) + "," + str(tup[3])
 
-class Main:
+class Client:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT)) # hiển hị màn hình kích thước setup trong const
@@ -30,8 +30,8 @@ class Main:
     def mainloop(self):
         n = Network()
         startPos = read_pos(n.getPos())
-        p = Player(startPos[0],startPos[1], startPos[2], startPos[3])
-        p2 = Player(0,0,0,0)
+        p = Player(startPos[0],startPos[1], startPos[2], startPos[3], "white")
+        p2 = Player(0,0,0,0, "black")
         screen = self.screen
         game = self.game
         dragger = self.game.dragger
@@ -51,18 +51,23 @@ class Main:
 
             if game.next_player == player2_color:
                 p2Pos = read_pos(n.send(make_pos((p.x, p.y,p.m, p.n))))
-                p2.x = clicked_row = p2Pos[0]
-                p2.y = clicked_col = p2Pos[1]
-                p2.m = released_row  = p2Pos[2]
-                p2.n = released_col  = p2Pos[3]
-
+                move = p2Pos
+                p2.x = init_row = move[0]
+                p2.y = init_col = move[1]
+                p2.m = final_row = move[2]
+                p2.n = final_col = move[3]
+                clicked_row = init_row
+                clicked_col = init_col
+                released_row = final_row
+                released_col = final_col
+                    
                 # if click square có một picece ?
                 if board.squares[clicked_row][clicked_col].has_piece():
                     piece = board.squares[clicked_row][clicked_col].piece
                 # valid piece (color) ?
                     if piece.color == game.next_player:
                         board.calc_moves(piece, clicked_row, clicked_col, bool=True)
-                        dragger.save_initial2((clicked_col, clicked_row))
+                        dragger.save_initial2((init_col, init_row))
                         dragger.drag_piece(piece)        
                 initial = Square(dragger.initial_row, dragger.initial_col)
                 final = Square(released_row, released_col)
@@ -156,23 +161,23 @@ class Main:
 
                         dragger.undrag_piece()
 
-                # key press
-                if event.type == pygame.KEYDOWN:
-                        # change themes
-                    if event.key == pygame.K_t:
-                            game.change_theme()
-                        # change themes
-                    if event.key == pygame.K_r:
-                            game.reset()
-                            game = self.game
-                            board = self.game.board
-                            dragger = self.game.dragger
-                #quit application  
-                elif event.type == pygame.QUIT:
+                        # key press
+                    elif event.type == pygame.KEYDOWN:
+                            # change themes
+                        if event.key == pygame.K_t:
+                                game.change_theme()
+                            # change themes
+                        if event.key == pygame.K_r:
+                                game.reset()
+                                game = self.game
+                                board = self.game.board
+                                dragger = self.game.dragger
+                    #quit application  
+                if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                 pygame.display.update()
                 CLOCK.tick(FPS)
         
-main = Main()
-main.mainloop()
+# main = Main()
+# main.mainloop()
